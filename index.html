@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Flashcards Dermato</title>
+
+<style>
+
+body {
+
+    margin: 0;
+
+    font-family: Arial, sans-serif;
+
+    background: #f5f3ef;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    min-height: 100vh;
+
+}
+
+.container {
+
+    width: 92%;
+
+    max-width: 500px;
+
+    text-align: center;
+
+}
+
+h1 {
+
+    font-size: 24px;
+
+}
+
+.card {
+
+    background: white;
+
+    border-radius: 20px;
+
+    padding: 20px;
+
+    box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+
+}
+
+.card img {
+
+    width: 100%;
+
+    max-height: 55vh;
+
+    object-fit: contain;
+
+    border-radius: 12px;
+
+}
+
+.answer {
+
+    font-size: 24px;
+
+    font-weight: bold;
+
+    margin: 20px 0;
+
+}
+
+button {
+
+    border: none;
+
+    border-radius: 12px;
+
+    padding: 14px 20px;
+
+    margin: 6px;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+}
+
+.show {
+
+    background: #222;
+
+    color: white;
+
+}
+
+.next {
+
+    background: #ddd;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🩺 Flashcards de Dermatologia</h1>
+
+<div class="card">
+
+<img id="imagem" src="">
+
+<div id="pergunta">
+
+    <h2>Qual é o diagnóstico?</h2>
+
+</div>
+
+<div id="resposta" class="answer" style="display:none;"></div>
+
+<button class="show" onclick="mostrarResposta()">
+
+    👁️ Mostrar resposta
+
+</button>
+
+<br>
+
+<button class="next" onclick="proxima()">
+
+    Próxima →
+
+</button>
+
+</div>
+
+<p id="contador"></p>
+
+</div>
+
+<script>
+
+const cartas = [
+
+    {
+
+        imagem: "imagens/foto1.jpg",
+
+        resposta: "Pitiríase versicolor"
+
+    },
+
+    {
+
+        imagem: "imagens/foto2.jpg",
+
+        resposta: "Psoríase"
+
+    },
+
+    {
+
+        imagem: "imagens/foto3.jpg",
+
+        resposta: "Melasma"
+
+    }
+
+];
+
+let atual = 0;
+
+function carregarCarta() {
+
+    document.getElementById("imagem").src =
+
+        cartas[atual].imagem;
+
+    document.getElementById("resposta").style.display = "none";
+
+    document.getElementById("contador").innerText =
+
+        `${atual + 1} / ${cartas.length}`;
+
+}
+
+function mostrarResposta() {
+
+    document.getElementById("resposta").innerText =
+
+        cartas[atual].resposta;
+
+    document.getElementById("resposta").style.display =
+
+        "block";
+
+}
+
+function proxima() {
+
+    atual++;
+
+    if (atual >= cartas.length) {
+
+        atual = 0;
+
+    }
+
+    carregarCarta();
+
+}
+
+carregarCarta();
+
+</script>
+
+</body>
+
+</html>
